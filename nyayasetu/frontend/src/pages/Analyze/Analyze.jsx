@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { analyzeDocument } from "@/lib/api"
 import { supabase } from "@/lib/supabase"
@@ -229,15 +230,14 @@ function ProcessingState() {
 }
 
 function Analyze() {
+  const navigate = useNavigate()
   const [appState, setAppState] = useState("idle")
   const [selectedFile, setSelectedFile] = useState(null)
   const [language, setLanguage] = useState("english")
-  const [error, setError] = useState(null)
 
   const handleFileSelected = (file) => {
     setSelectedFile(file)
     setAppState("fileSelected")
-    setError(null)
   }
 
   const handleClear = () => {
@@ -247,21 +247,13 @@ function Analyze() {
 
   const handleAnalyze = async (file, lang) => {
     setAppState("loading")
-    setError(null)
     try {
       const { data: { user } } = await supabase.auth.getUser()
       const userId = user?.id || null
-      await analyzeDocument(file, lang, userId)
-      // AnalysisResults component handles route display; navigate is done inside analyzeDocument lib or calling code
-      // Here we keep it consistent with existing flow
-      const resultData = await analyzeDocument(file, lang, userId).catch(() => null)
-      if (resultData) {
-        // preserve state for AnalysisResults page — existing code uses navigate with state
-        window.dispatchEvent(new CustomEvent('analysis-done', { detail: resultData }))
-      }
+      const resultData = await analyzeDocument(file, lang, userId)
+      navigate(`/analyze/${resultData.id || 'result'}`, { state: { result: resultData } })
     } catch (requestError) {
       const errorMessage = requestError?.response?.data?.detail || "Analysis failed"
-      setError(errorMessage)
       setAppState("fileSelected")
       toast.error(errorMessage)
     }
