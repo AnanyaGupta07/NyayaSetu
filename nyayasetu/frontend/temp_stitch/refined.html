@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NyayaSetu | Sovereign Archive - Analysis Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&amp;family=Space+Grotesk:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#c7a850",
+              "on-secondary-container": "#00311f",
+              "on-primary-fixed": "#351000",
+              "surface-container": "#1c2028",
+              "primary-fixed-dim": "#ffb693",
+              "tertiary": "#e4c368",
+              "outline-variant": "#5a4136",
+              "on-surface": "#e0e2ee",
+              "on-error": "#690005",
+              "on-secondary": "#003824",
+              "surface-dim": "#10131c",
+              "primary-container": "#ff6b00",
+              "secondary": "#4edea3",
+              "inverse-primary": "#a04100",
+              "primary-fixed": "#ffdbcc",
+              "inverse-on-surface": "#2d303a",
+              "on-tertiary-container": "#4f3d00",
+              "on-primary": "#561f00",
+              "secondary-fixed": "#6ffbbe",
+              "on-tertiary-fixed": "#241a00",
+              "on-surface-variant": "#e2bfb0",
+              "on-primary-fixed-variant": "#7a3000",
+              "secondary-container": "#00a572",
+              "surface-container-highest": "#31353e",
+              "error-container": "#93000a",
+              "surface-variant": "#31353e",
+              "tertiary-fixed": "#ffe08d",
+              "outline": "#a98a7d",
+              "tertiary-fixed-dim": "#e4c368",
+              "surface-container-high": "#262a33",
+              "secondary-fixed-dim": "#4edea3",
+              "primary": "#ffb693",
+              "on-tertiary-fixed-variant": "#584400",
+              "on-secondary-fixed": "#002113",
+              "surface-bright": "#353943",
+              "on-tertiary": "#3d2f00",
+              "on-secondary-fixed-variant": "#005236",
+              "on-error-container": "#ffdad6",
+              "surface-tint": "#ffb693",
+              "surface": "#10131c",
+              "error": "#ffb4ab",
+              "background": "#10131c",
+              "on-primary-container": "#572000",
+              "on-background": "#e0e2ee",
+              "inverse-surface": "#e0e2ee",
+              "surface-container-lowest": "#0a0e16",
+              "surface-container-low": "#181c24"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Space Grotesk", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"],
+              "dmsans": ["DM Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-panel {
+        background: rgba(49, 53, 62, 0.6);
+        backdrop-filter: blur(24px);
+      }
+      .saffron-gradient {
+        background: linear-gradient(90deg, #ffb693 0%, #ff6b00 100%);
+      }
+      .beam-saffron {
+        background: linear-gradient(90deg, transparent, #ff6b00, transparent);
+      }
+      .beam-emerald {
+        background: linear-gradient(90deg, transparent, #4edea3, transparent);
+      }
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #31353e; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="flex flex-col w-60 h-screen py-8 px-4 bg-[#080D1A] fixed left-0 top-0 z-50 overflow-y-auto">
+<div class="mb-10 px-4">
+<h1 class="text-2xl font-headline italic text-[#FFB693]">NyayaSetu</h1>
+<p class="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500 mt-1">Decode Indian Law</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="font-label text-sm">My Papers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#FFB693] font-bold border-r-2 border-[#FF6B00] bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-label text-sm">Analyze</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">person_outline</span>
+<span class="font-label text-sm">Profile</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-white/5 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:text-slate-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span class="font-label text-xs">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-60 min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-8 h-20 bg-[#10131c]/80 backdrop-blur-xl sticky top-0 z-40">
+<div class="flex items-center">
+<h2 class="font-headline italic text-lg text-on-surface">Appropriation_Bill_2024_Extract.pdf</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 px-4 py-2 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-48 placeholder:text-slate-600" placeholder="Search archive..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-400 hover:text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-[#FF6B00] rounded-full"></span>
+</button>
+<button class="p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+<div class="w-px h-6 bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="text-[13px] font-dmsans font-medium text-on-surface leading-none">Priyanshu</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-[#FFB693]/20 bg-[#FFB693]/10 flex items-center justify-center text-[#FFB693] font-bold font-dmsans">P</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-6 bg-[#050810]">
+<!-- ROW 1: Pipeline Visualization -->
+<section class="w-full bg-[#0D1117] rounded-2xl px-8 py-6 mb-6 flex items-center justify-between overflow-hidden">
+<!-- Node 1 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-[#050810] border border-outline-variant/30 flex items-center justify-center text-2xl shadow-inner">
+                    📄
+                </div>
+<div class="mt-3">
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">PDF Document</p>
+<p class="text-xs text-primary font-mono font-bold">6,493 tokens</p>
+</div>
+</div>
+<!-- Beam 1 -->
+<div class="flex-1 h-[2px] mx-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-white/5"></div>
+<div class="absolute inset-0 beam-saffron w-full"></div>
+</div>
+<!-- Node 2 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-2xl">
+                    ⚙️
+                </div>
+<div class="mt-3">
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">ScaleDown</p>
+<p class="text-xs text-primary font-mono font-bold">-56%</p>
+</div>
+</div>
+<!-- Beam 2 -->
+<div class="flex-1 h-[2px] mx-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-white/5"></div>
+<div class="absolute inset-0 beam-saffron w-full"></div>
+</div>
+<!-- Node 3 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-2xl">
+                    🤖
+                </div>
+<div class="mt-3">
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">Groq LLaMA</p>
+<p class="text-xs text-primary font-mono font-bold">2,825 tokens</p>
+</div>
+</div>
+<!-- Beam 3 -->
+<div class="flex-1 h-[2px] mx-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-white/5"></div>
+<div class="absolute inset-0 beam-emerald w-full"></div>
+</div>
+<!-- Node 4 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container border border-secondary/40 flex items-center justify-center text-2xl">
+                    📋
+                </div>
+<div class="mt-3">
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">Summary</p>
+<p class="text-xs text-secondary font-bold">Ready</p>
+</div>
+</div>
+</section>
+<!-- ROW 2: Two Columns -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left: Summary Panel -->
+<div class="col-span-7 bg-[#0D1117] rounded-2xl p-6 border border-white/5 flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline italic text-lg text-on-surface leading-tight mb-2">Appropriation_Bill_2024_Extract.pdf</h2>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold rounded uppercase tracking-wider">AI Summarized</span>
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary text-[10px] font-bold rounded uppercase tracking-wider">Citizen-Ready</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">link</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-bright transition-colors text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">download</span> PDF
+                        </button>
+</div>
+</div>
+<div class="mb-6">
+<p class="text-[10px] text-slate-500 font-label mb-2">Summary Language:</p>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1 bg-primary text-on-primary-container text-xs font-bold rounded-full">English ✓</button>
+<button class="px-3 py-1 bg-surface-container text-slate-400 text-xs font-bold rounded-full hover:bg-surface-bright">Hindi</button>
+<button class="px-3 py-1 bg-surface-container text-slate-400 text-xs font-bold rounded-full hover:bg-surface-bright">Tamil</button>
+<button class="px-3 py-1 bg-surface-container text-slate-400 text-xs font-bold rounded-full hover:bg-surface-bright">Bengali</button>
+<button class="px-3 py-1 bg-surface-container text-slate-400 text-xs font-bold rounded-full hover:bg-surface-bright">Hinglish</button>
+</div>
+</div>
+<div class="w-full h-px bg-white/5 mb-6"></div>
+<div class="relative flex-1 overflow-hidden">
+<div class="text-sm text-slate-300 leading-relaxed font-body max-h-[400px] overflow-y-auto pr-4">
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xl">📋</span>
+<span class="font-headline text-lg italic text-on-surface">WHAT THIS IS ABOUT</span>
+</div>
+<p class="mb-6">Yeh ek appropriation bill hai jo Parliament ke dwara pass kiya gaya hai. Iska main purpose government ke expenditures ko authorize karna hai Consolidated Fund of India se. Under Article 114 of the Constitution, no amount can be withdrawn from the Fund without an Appropriation Act.</p>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xl">🔑</span>
+<span class="font-headline text-lg italic text-on-surface">KEY POINTS</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+<span>Is bill mein central government ke liye various ministries and departments ke funds allocate kiye gaye hain.</span>
+</li>
+<li class="flex gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+<span>Specifically, infrastructure development projects ke liye ₹2.4 Lakh Crores ki badhotari dekhi gayi hai.</span>
+</li>
+<li class="flex gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+<span>Social welfare schemes like MNREGA and PM-Kisan will receive sustained funding as per last year's revised estimates.</span>
+</li>
+<li class="flex gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+<span>Agricultural credit targets have been boosted to ₹20 Lakh Crore to assist small-scale farmers.</span>
+</li>
+</ul>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0D1117] to-transparent pointer-events-none"></div>
+</div>
+<div class="mt-auto pt-6 border-t border-white/5">
+<button class="flex items-center gap-2 text-primary font-label text-sm font-bold hover:gap-3 transition-all">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+                        Analyze Another Document
+                    </button>
+</div>
+</div>
+<!-- Right: Metrics Grid -->
+<div class="col-span-5 grid grid-cols-2 gap-3 auto-rows-min">
+<!-- Stat Card: Tokens -->
+<div class="col-span-2 bg-[#0D1117] rounded-2xl p-6 border border-white/5 relative overflow-hidden">
+<div class="flex items-start justify-between mb-2">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-label">Tokens Eliminated</p>
+<h3 class="font-headline text-6xl text-primary -ml-1">3,668</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+</div>
+<div class="mt-6">
+<div class="flex h-2 rounded-full overflow-hidden bg-surface-container-highest">
+<div class="w-[43%] saffron-gradient"></div>
+<div class="w-[57%] bg-secondary"></div>
+</div>
+<div class="flex justify-between mt-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-[10px] text-slate-400 font-mono">Kept: 2,825</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[10px] text-slate-400 font-mono">Eliminated: 3,668</span>
+</div>
+</div>
+</div>
+<div class="absolute top-6 right-16">
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-[10px] font-bold rounded">56% Compression</span>
+</div>
+</div>
+<!-- Stat Card: Energy -->
+<div class="bg-[#0D1117] rounded-2xl p-5 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
+<span class="material-symbols-outlined text-[20px]">eco</span>
+</div>
+<p class="text-[10px] text-slate-500 font-label mb-1">Energy Saved</p>
+<h4 class="font-headline text-2xl text-secondary">0.004 kWh</h4>
+<p class="text-[10px] text-slate-400 mt-2">≈ 2.6g CO₂ avoided</p>
+</div>
+<!-- Stat Card: Cost -->
+<div class="bg-[#0D1117] rounded-2xl p-5 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary mb-4">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<p class="text-[10px] text-slate-500 font-label mb-1">Cost Saved</p>
+<h4 class="font-headline text-2xl text-tertiary">$0.009</h4>
+<p class="text-[10px] text-slate-400 mt-2">vs GPT-4o baseline</p>
+</div>
+<!-- Stat Card: Density -->
+<div class="bg-[#0D1117] rounded-2xl p-5 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] text-slate-500 font-label mb-1">Density</p>
+<h4 class="font-headline text-2xl text-primary">0.59</h4>
+</div>
+<span class="px-1.5 py-0.5 bg-tertiary/10 text-tertiary text-[8px] font-bold rounded">Medium</span>
+</div>
+<div class="w-full h-1 bg-surface-container mt-3 rounded-full overflow-hidden">
+<div class="w-[59%] h-full bg-primary"></div>
+</div>
+</div>
+<!-- Stat Card: Speed -->
+<div class="bg-[#0D1117] rounded-2xl p-5 border border-white/5">
+<div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white mb-4">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+</div>
+<p class="text-[10px] text-slate-500 font-label mb-1">Speed</p>
+<h4 class="font-headline text-2xl text-white">1,964 ms</h4>
+<p class="text-[10px] text-slate-400 mt-2">8 pages processed</p>
+</div>
+</div>
+</div>
+<!-- ROW 3: Q&A Panel -->
+<section class="w-full bg-[#0D1117] rounded-2xl p-6 mt-4 border border-white/5">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<h3 class="font-headline font-bold text-lg text-on-surface">Ask About This Law</h3>
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<button class="px-3 py-2 bg-surface-container hover:bg-surface-bright text-xs text-slate-300 rounded-lg transition-colors border border-white/5">What are the key penalties?</button>
+<button class="px-3 py-2 bg-surface-container hover:bg-surface-bright text-xs text-slate-300 rounded-lg transition-colors border border-white/5">How does this affect citizens?</button>
+<button class="px-3 py-2 bg-surface-container hover:bg-surface-bright text-xs text-slate-300 rounded-lg transition-colors border border-white/5">What is the effective date?</button>
+<button class="px-3 py-2 bg-surface-container hover:bg-surface-bright text-xs text-slate-300 rounded-lg transition-colors border border-white/5">Show me the allocation for health.</button>
+</div>
+<div class="flex gap-3">
+<div class="flex-1 relative">
+<input class="w-full h-12 bg-[#050810] border border-white/10 rounded-xl px-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-on-surface placeholder:text-slate-600" placeholder="Type your question here (e.g., Is this applicable in Maharashtra?)..." type="text"/>
+</div>
+<button class="h-12 px-8 saffron-gradient text-on-primary-container font-label font-bold rounded-xl active:opacity-90 flex items-center gap-2 hover:gap-3 transition-all">
+                    Ask <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+</body></html>

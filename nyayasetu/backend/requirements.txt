@@ -5,3 +5,5 @@ PyMuPDF
 groq
 python-dotenv
 httpx
+supabase
+resend

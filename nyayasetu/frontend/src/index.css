@@ -2,14 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Google Fonts ─────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Inter:wght@300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@300..700&family=Playfair+Display:wght@400..900&family=DM+Sans:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  background-color: #0A0F1E;
-  color: #F8FAFC;
-  font-family: 'Lora', serif;
+  background-color: #050810;
+  color: #e0e2ee;
+  font-family: 'Inter', 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-::selection {
-  background: #FF6B00;
-  color: white;
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ff6b00; border-radius: 4px; }
+
+::selection { background: rgba(255,107,0,0.3); color: #ffb693; }
+
+/* ─── Material Symbols ──────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  font-family: 'Material Symbols Outlined';
+}
+
+/* ─── Dot Pattern BG ────────────────────────────── */
+.dot-pattern {
+  background-image: radial-gradient(circle, #ff6b00 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── Glassmorphism ─────────────────────────────── */
+.glass-panel {
+  background: rgba(49, 53, 62, 0.6);
+  backdrop-filter: blur(24px);
+}
+
+/* ─── Saffron Gradient ───────────────────────────── */
+.saffron-gradient {
+  background: linear-gradient(90deg, #ffb693 0%, #ff6b00 100%);
+}
+
+/* ─── Beam Gradients ─────────────────────────────── */
+.beam-saffron {
+  background: linear-gradient(90deg, transparent, #ff6b00, transparent);
+}
+.beam-emerald {
+  background: linear-gradient(90deg, transparent, #4edea3, transparent);
+}
+
+/* ─── Shimmer ────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,182,147,0.1), transparent);
+  background-size: 200% 100%;
+}
+
+/* ─── Orbital animation ─────────────────────────── */
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-orbit-slow  { animation: orbit 20s linear infinite; }
+.animate-orbit-mid   { animation: orbit 15s linear infinite reverse; }
+.animate-orbit-fast  { animation: orbit 10s linear infinite; }
+
+.orbital-ring {
+  border-style: dashed;
+  border-color: rgba(255, 182, 147, 0.2);
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Pulse animations ──────────────────────────── */
+@keyframes pulse-saffron {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+.status-pulse { animation: pulse-saffron 2s ease-in-out infinite; }
+.glow-saffron { text-shadow: 0 0 15px rgba(255, 107, 0, 0.6); }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.dot-pulse { animation: pulse-dot 1.4s ease-in-out infinite; }
+
+/* ─── Card borders ──────────────────────────────── */
+.card-border { border-bottom: 1px solid rgba(255, 182, 147, 0.1); }
+.pipeline-line { height: 2px; background: linear-gradient(90deg, transparent, #FF6B00, transparent); }
+
+/* ─── Legacy helpers ────────────────────────────── */
+.stat-number {
+  font-family: 'Newsreader', 'Playfair Display', serif;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.card-base {
+  background: #0D1117;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 24px;
 }

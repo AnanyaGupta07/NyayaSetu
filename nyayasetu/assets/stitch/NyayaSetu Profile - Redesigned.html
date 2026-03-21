@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NyayaSetu | Profile Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;family=Playfair+Display:wght@700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-tint": "#FF6B00",
+              "primary": "#FF6B00",
+              "on-surface": "#e0e2ee",
+              "secondary": "#4edea3",
+              "background": "#050810",
+              "surface": "#0D1117",
+              "error": "#ffb4ab",
+              "outline": "#a98a7d",
+              "surface-container": "#1c2028",
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["DM Sans", "sans-serif"],
+              "label": ["Space Grotesk", "sans-serif"],
+              "serif-accent": ["Playfair Display", "serif"],
+              "mono": ["JetBrains Mono", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1rem", "inner": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            background-color: #050810;
+            color: #f1f5f9;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .sidebar-bg { background-color: #080D1A; }
+        .card-bg { background-color: #0D1117; border: 1px solid rgba(255, 107, 0, 0.05); }
+        .input-bg { background-color: #050810; }
+        .saffron-text { color: #FF6B00; }
+        .saffron-bg-soft { background-color: rgba(255, 107, 0, 0.1); }
+        .saffron-border { border-color: rgba(255, 107, 0, 0.2); }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="sidebar-bg w-64 h-full fixed left-0 top-0 flex flex-col p-6 z-50 border-r border-white/5">
+<div class="mb-10 px-2">
+<h1 class="text-2xl font-headline saffron-text tracking-tight font-bold">NyayaSetu</h1>
+<p class="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-label mt-1">The Sovereign Archive</p>
+</div>
+<nav class="flex-1 space-y-1.5">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-sm font-label font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[22px]">description</span>
+<span class="text-sm font-label font-medium">My Papers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[22px]">analytics</span>
+<span class="text-sm font-label font-medium">Analyze</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 saffron-text bg-primary/10 rounded-lg group border border-primary/20" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-sm font-label font-bold">Profile</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-white/5 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-slate-300 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-label">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-slate-300 transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span class="text-sm font-label">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 min-h-screen relative">
+<!-- TopNavBar -->
+<header class="bg-[#050810]/80 backdrop-blur-xl fixed top-0 right-0 w-[calc(100%-16rem)] z-40 flex justify-between items-center px-12 h-20 border-b border-white/5">
+<div class="flex items-center gap-4">
+<h2 class="font-headline text-2xl text-on-surface">Profile Identity</h2>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-6 text-slate-400">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors text-[22px]">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors text-[22px]">account_balance</span>
+</div>
+<div class="h-10 w-10 rounded-full border border-primary/30 p-0.5 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrkUIXvng-hUEvKa8jcfvfmNHv7f6q_BMt8WiVh10mCuec_06RfO7ZN5mA1qCLe7IXpV-IDLRWFlHz3DTaQXjnLm6yk9cgB-_N57SH7G6SO_fPgXPxLen_1-7J_GbKX5IrMs2S7sJ19kvHt1iDNYYrmNi4IQaSvzGSGBtD-X1j2x84nae08YuoTfl-0HkzUzZzWVLuBzEWINvNYvhdOlxGOG-wbvbI9cllkgC3H2md87cYXIOENIrqCPh8nvn5S4LkqJqV3WsdFZeo"/>
+</div>
+</div>
+</header>
+<!-- Profile Content Grid -->
+<div class="mt-20 px-12 py-12 max-w-5xl mx-auto space-y-8">
+<!-- SECTION 1: Identity -->
+<div class="space-y-4">
+<section class="card-bg rounded-xl p-8 flex items-center gap-8 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="relative w-24 h-24 rounded-2xl saffron-bg-soft flex items-center justify-center border border-primary/20 rotate-3">
+<span class="font-serif-accent text-[44px] font-bold saffron-text leading-none -rotate-3">P</span>
+</div>
+<div class="flex-1 space-y-1">
+<h3 class="font-headline text-3xl font-bold text-white tracking-tight">Priyanshu</h3>
+<p class="text-sm text-slate-400 font-body flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                            priyanshu@example.com
+                        </p>
+<div class="inline-flex items-center px-3 py-1 rounded-full saffron-bg-soft border border-primary/10 text-[11px] font-label font-semibold saffron-text mt-3 uppercase tracking-widest">
+                            Authorized since Jan 2026
+                        </div>
+</div>
+</section>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Form Settings -->
+<div class="lg:col-span-2 space-y-8">
+<section class="card-bg rounded-xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined saffron-text">settings_suggest</span>
+<h3 class="font-headline text-xl font-semibold text-white">Profile Configuration</h3>
+</div>
+<form class="space-y-8">
+<!-- Field 1 -->
+<div class="space-y-2">
+<label class="block text-[11px] font-label font-bold text-slate-500 uppercase tracking-widest ml-1">Legal Display Name</label>
+<input class="w-full h-12 input-bg border border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 rounded-lg px-5 text-white font-body text-base transition-all outline-none" type="text" value="Priyanshu"/>
+</div>
+<!-- Field 2 -->
+<div class="space-y-2">
+<label class="block text-[11px] font-label font-bold text-slate-500 uppercase tracking-widest ml-1">Associated Email</label>
+<div class="relative group">
+<input class="w-full h-12 bg-white/[0.02] border border-white/5 cursor-not-allowed rounded-lg px-5 text-slate-500 font-body text-base outline-none" disabled="" type="email" value="priyanshu@example.com"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-[18px] text-slate-600">lock</span>
+</div>
+<p class="text-[11px] text-slate-600 mt-2 italic px-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">info</span> Fixed for verification integrity
+                                </p>
+</div>
+<!-- Field 3 -->
+<div class="space-y-4">
+<label class="block text-[11px] font-label font-bold text-slate-500 uppercase tracking-widest ml-1">Archive Interface Language</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+<button class="px-4 py-2.5 rounded-lg text-xs font-label font-semibold text-slate-400 input-bg border border-white/10 hover:border-primary/40 hover:text-slate-200 transition-all flex items-center justify-center gap-2" type="button">
+<span>🇬🇧</span> English
+                                    </button>
+<button class="px-4 py-2.5 rounded-lg text-xs font-label font-bold saffron-text saffron-bg-soft border-2 border-primary/50 flex items-center justify-center gap-2 shadow-lg shadow-primary/5" type="button">
+<span>🇮🇳</span> Hindi <span class="material-symbols-outlined text-[14px]">check_circle</span>
+</button>
+<button class="px-4 py-2.5 rounded-lg text-xs font-label font-semibold text-slate-400 input-bg border border-white/10 hover:border-primary/40 transition-all flex items-center justify-center gap-2" type="button">
+<span>🇮🇳</span> Tamil
+                                    </button>
+<button class="px-4 py-2.5 rounded-lg text-xs font-label font-semibold text-slate-400 input-bg border border-white/10 hover:border-primary/40 transition-all flex items-center justify-center gap-2" type="button">
+<span>🇮🇳</span> Bengali
+                                    </button>
+<button class="px-4 py-2.5 rounded-lg text-xs font-label font-semibold text-slate-400 input-bg border border-white/10 hover:border-primary/40 transition-all flex items-center justify-center gap-2" type="button">
+<span>🇮🇳</span> Hinglish
+                                    </button>
+</div>
+</div>
+<!-- Save Button -->
+<div class="pt-4">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-label font-bold text-base rounded-xl transition-all duration-300 active:scale-[0.98] shadow-lg shadow-primary/10 flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">save</span>
+                                    Commit Changes
+                                </button>
+</div>
+</form>
+</section>
+</div>
+<!-- Right Column: Stats & Danger -->
+<div class="space-y-8">
+<!-- Activity Stats -->
+<section class="card-bg rounded-xl p-8 shadow-sm h-fit">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined saffron-text">analytics</span>
+<h3 class="font-headline text-xl font-semibold text-white">Impact Ledger</h3>
+</div>
+<div class="space-y-6">
+<div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 flex flex-col items-center text-center">
+<div class="font-serif-accent text-4xl font-bold saffron-text">24</div>
+<div class="text-[10px] font-label text-slate-500 uppercase tracking-[0.2em] mt-2 font-bold">Total Documents</div>
+</div>
+<div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 flex flex-col items-center text-center">
+<div class="font-serif-accent text-4xl font-bold saffron-text">84.3K</div>
+<div class="text-[10px] font-label text-slate-500 uppercase tracking-[0.2em] mt-2 font-bold">Tokens Processed</div>
+</div>
+<div class="bg-secondary/5 border border-secondary/10 rounded-xl p-6 flex flex-col items-center text-center">
+<div class="font-serif-accent text-4xl font-bold text-secondary">6.8K</div>
+<div class="text-[10px] font-label text-slate-400 uppercase tracking-[0.2em] mt-2 font-bold">g CO₂ Sequestered</div>
+</div>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="card-bg rounded-xl p-8 border border-error/20 shadow-sm relative overflow-hidden group">
+<div class="absolute inset-0 bg-error/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative">
+<h3 class="text-[11px] font-label font-bold text-error uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                System Override
+                            </h3>
+<div class="space-y-6">
+<div>
+<p class="font-label text-sm text-white font-bold">Terminate Identity</p>
+<p class="text-xs text-slate-500 mt-1.5 leading-relaxed">This will purge all archived cases, metadata, and token credits from the sovereign ledger.</p>
+</div>
+<button class="w-full border border-error/30 text-error hover:bg-error hover:text-background font-label font-bold py-3 rounded-lg text-xs transition-all uppercase tracking-widest">
+                                    Delete Archive Account
+                                </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed bottom-0 right-0 pointer-events-none z-0">
+<div class="w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2"></div>
+</div>
+</body></html>

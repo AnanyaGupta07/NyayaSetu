@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NyayaSetu | Processing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@300..700&amp;family=Playfair+Display:wght@400..900&amp;family=JetBrains+Mono:wght@100..800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#e2bfb0",
+              "primary": "#ffb693",
+              "surface-container-high": "#262a33",
+              "surface-variant": "#31353e",
+              "on-primary-container": "#572000",
+              "surface-container": "#1c2028",
+              "on-primary": "#561f00",
+              "on-secondary-fixed": "#002113",
+              "on-tertiary-container": "#4f3d00",
+              "primary-fixed-dim": "#ffb693",
+              "secondary-container": "#00a572",
+              "on-background": "#e0e2ee",
+              "error": "#ffb4ab",
+              "outline": "#a98a7d",
+              "on-tertiary": "#3d2f00",
+              "on-error-container": "#ffdad6",
+              "on-primary-fixed": "#351000",
+              "tertiary": "#e4c368",
+              "secondary-fixed-dim": "#4edea3",
+              "surface-container-low": "#181c24",
+              "tertiary-fixed-dim": "#e4c368",
+              "on-tertiary-fixed-variant": "#584400",
+              "surface-container-lowest": "#0a0e16",
+              "on-tertiary-fixed": "#241a00",
+              "on-secondary-fixed-variant": "#005236",
+              "background": "#050810",
+              "secondary-fixed": "#6ffbbe",
+              "primary-fixed": "#ffdbcc",
+              "on-secondary-container": "#00311f",
+              "inverse-primary": "#a04100",
+              "on-surface": "#e0e2ee",
+              "primary-container": "#ff6b00",
+              "on-error": "#690005",
+              "surface-dim": "#10131c",
+              "tertiary-container": "#c7a850",
+              "surface-tint": "#ffb693",
+              "error-container": "#93000a",
+              "on-primary-fixed-variant": "#7a3000",
+              "outline-variant": "#5a4136",
+              "surface": "#10131c",
+              "surface-bright": "#353943",
+              "inverse-surface": "#e0e2ee",
+              "surface-container-highest": "#31353e",
+              "secondary": "#4edea3",
+              "on-secondary": "#003824",
+              "inverse-on-surface": "#2d303a",
+              "tertiary-fixed": "#ffe08d"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Space Grotesk", "monospace"],
+              "serif": ["Playfair Display", "serif"],
+              "sans": ["DM Sans", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-orbit-slow { animation: orbit 20s linear infinite; }
+        .animate-orbit-mid { animation: orbit 15s linear infinite reverse; }
+        .animate-orbit-fast { animation: orbit 10s linear infinite; }
+        
+        .glow-saffron {
+            text-shadow: 0 0 15px rgba(255, 107, 0, 0.6);
+        }
+        
+        /* Subtle pulsing for the active state */
+        @keyframes pulse-saffron {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        .status-pulse {
+            animation: pulse-saffron 2s ease-in-out infinite;
+        }
+
+        .orbital-ring {
+            border-style: dashed;
+            border-color: rgba(255, 182, 147, 0.2);
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-[#050810] text-on-surface font-body overflow-hidden h-screen w-screen flex flex-col items-center justify-center">
+<!-- Brand Identity Background Element (Subtle Gradient) -->
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container-lowest via-background to-[#0c0f18] z-0"></div>
+<!-- Main Content Container -->
+<main class="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl px-6">
+<!-- The Orbital Engine -->
+<div class="relative flex items-center justify-center mb-24" style="height: 300px; width: 300px;">
+<!-- Outer Ring (260px) -->
+<div class="orbital-ring animate-orbit-slow border-2" style="width: 260px; height: 260px;">
+<div class="absolute top-0 transform -translate-y-1/2 text-2xl">✨</div>
+</div>
+<!-- Middle Ring (180px) -->
+<div class="orbital-ring animate-orbit-mid border-2" style="width: 180px; height: 180px;">
+<div class="absolute right-0 transform translate-x-1/2 text-xl">📄</div>
+</div>
+<!-- Inner Ring (110px) -->
+<div class="orbital-ring animate-orbit-fast border-[1.5px]" style="width: 110px; height: 110px;">
+<div class="absolute bottom-0 transform translate-y-1/2 text-lg">⚖️</div>
+</div>
+<!-- Center Focal Point -->
+<div class="flex items-center justify-center bg-surface-container-lowest rounded-full w-20 h-20 shadow-[0_0_40px_rgba(255,107,0,0.15)] z-20 border border-outline-variant/10">
+<span class="font-serif text-[22px] font-bold text-primary tracking-tight">AI</span>
+</div>
+</div>
+<!-- Status Messaging -->
+<div class="text-center space-y-6">
+<div class="flex flex-col items-center space-y-3">
+<h2 class="font-sans text-base text-slate-300 tracking-wide flex items-center gap-2">
+<span class="text-lg">⚙️</span>
+                    Compressing with ScaleDown...
+                </h2>
+<!-- Loading Dots -->
+<div class="flex gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/80 animate-bounce" style="animation-delay: 0.1s"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/80 animate-bounce" style="animation-delay: 0.2s"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container/80 animate-bounce" style="animation-delay: 0.3s"></div>
+</div>
+</div>
+<!-- Steps Indicator (Bento-style Minimal List) -->
+<div class="flex flex-wrap items-center justify-center gap-6 pt-4">
+<div class="flex items-center gap-2 text-secondary/70">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label text-xs uppercase tracking-widest">Extract</span>
+</div>
+<div class="h-[1px] w-4 bg-outline-variant/20"></div>
+<div class="flex items-center gap-2 text-primary glow-saffron status-pulse">
+<span class="material-symbols-outlined text-sm" data-icon="hourglass_empty">hourglass_empty</span>
+<span class="font-label text-xs uppercase tracking-widest font-bold">Compress</span>
+</div>
+<div class="h-[1px] w-4 bg-outline-variant/20"></div>
+<div class="flex items-center gap-2 text-slate-600">
+<span class="w-2 h-2 rounded-full border border-slate-700"></span>
+<span class="font-label text-xs uppercase tracking-widest">Analyze</span>
+</div>
+<div class="h-[1px] w-4 bg-outline-variant/20"></div>
+<div class="flex items-center gap-2 text-slate-600">
+<span class="w-2 h-2 rounded-full border border-slate-700"></span>
+<span class="font-label text-xs uppercase tracking-widest">Summarize</span>
+</div>
+</div>
+<!-- Contextual Hint -->
+<p class="font-sans text-xs text-slate-600 italic mt-8 bg-surface-container-low/30 px-4 py-2 rounded-full inline-block border border-outline-variant/5">
+                Hint: Large documents may take 20–40 seconds
+            </p>
+</div>
+</main>
+<!-- UI Background Decoration -->
+<div class="fixed bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none opacity-40"></div>
+<div class="fixed top-12 left-12 opacity-5 pointer-events-none">
+<h1 class="font-headline italic text-4xl text-on-surface">NyayaSetu</h1>
+</div>
+<!-- Minimal Overlay Texture -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay" data-alt="Subtle dark carbon fiber texture pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGFIOSMV4hUcTKNbnU0NGju3HfmLArkpy69INX2bCJf_W95s7CYjLFCHm0JF7JyixV-cy57pGDFYJCI6IMNhcR1hAmB7JA2z6mNF32lv50e-95uh-PtRR5nOS-JcDmdQe_07xI7euaLVSjdh8-VI0XqqRrLDfwES-Toeomprb9JC32hWK6y4Z7cxLdlwtnAEIH_Cacs-6lbNb6X6kbMtyw_vuVkSwAhKJOHc66SlU0--h3Pl9YGuCWdGyTvMmZOkwhZZb0h6T4Kn8_');"></div>
+</body></html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Papers | NyayaSetu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,700;1,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-headline { font-family: 'Newsreader', serif; }
+        .ui-sans { font-family: 'Inter', sans-serif; }
+        .data-mono { font-family: 'JetBrains+Mono', monospace; }
+        .label-mono { font-family: 'Space Grotesk', monospace; }
+        
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #10131c; }
+        ::-webkit-scrollbar-thumb { background: #31353e; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#31353e",
+              "on-secondary-fixed": "#002113",
+              "on-secondary-container": "#00311f",
+              "outline-variant": "#5a4136",
+              "on-primary-fixed-variant": "#7a3000",
+              "surface-dim": "#10131c",
+              "surface-container-lowest": "#0a0e16",
+              "secondary-container": "#00a572",
+              "on-primary-fixed": "#351000",
+              "inverse-surface": "#e0e2ee",
+              "secondary-fixed-dim": "#4edea3",
+              "secondary": "#4edea3",
+              "on-tertiary-fixed-variant": "#584400",
+              "tertiary": "#e4c368",
+              "inverse-primary": "#a04100",
+              "primary-fixed": "#ffdbcc",
+              "on-tertiary-container": "#4f3d00",
+              "surface-variant": "#31353e",
+              "surface-container": "#1c2028",
+              "on-secondary-fixed-variant": "#005236",
+              "error-container": "#93000a",
+              "tertiary-fixed-dim": "#e4c368",
+              "tertiary-container": "#c7a850",
+              "surface-tint": "#ffb693",
+              "surface-container-low": "#181c24",
+              "error": "#ffb4ab",
+              "primary": "#ffb693",
+              "on-tertiary-fixed": "#241a00",
+              "on-tertiary": "#3d2f00",
+              "surface-bright": "#353943",
+              "on-secondary": "#003824",
+              "tertiary-fixed": "#ffe08d",
+              "primary-container": "#ff6b00",
+              "background": "#10131c",
+              "secondary-fixed": "#6ffbbe",
+              "surface-container-high": "#262a33",
+              "inverse-on-surface": "#2d303a",
+              "on-background": "#e0e2ee",
+              "on-surface-variant": "#e2bfb0",
+              "on-primary-container": "#572000",
+              "on-surface": "#e0e2ee",
+              "on-error-container": "#ffdad6",
+              "primary-fixed-dim": "#ffb693",
+              "on-primary": "#561f00",
+              "surface": "#10131c",
+              "on-error": "#690005",
+              "outline": "#a98a7d"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-[#10131c] text-on-surface ui-sans selection:bg-primary/30 min-h-screen flex">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="w-60 h-screen fixed left-0 top-0 bg-[#080D1A] flex flex-col py-8 px-4 z-50">
+<div class="mb-12 px-2">
+<h1 class="text-2xl font-['Newsreader'] serif text-[#FFB693] tracking-tight">NyayaSetu</h1>
+<p class="text-[10px] label-mono uppercase tracking-[0.2em] text-slate-500 mt-1">The Sovereign Archive</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Dashboard Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 font-medium hover:bg-[#181c24] hover:text-[#F1F5F9] transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="label-mono text-sm">Dashboard</span>
+</a>
+<!-- My Papers Tab (ACTIVE) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#FFB693] font-bold border-r-2 border-[#FF6B00] bg-[#181c24]/50 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="label-mono text-sm">My Papers</span>
+</a>
+<!-- Analyze Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 font-medium hover:bg-[#181c24] hover:text-[#F1F5F9] transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="label-mono text-sm">Analyze</span>
+</a>
+</nav>
+<div class="mt-auto px-2 py-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="User profile avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfR9xPFt0_4iaoieFwBUBrZ4rrrUtd2IQMCQwv_QkXpyCBx7xylEX5jpxs2CpVk-L3S67eNYIfVWxWIcTxjvmzSLZH5vfUm1yU8UmUlERj1tlMzcy30_oVi415yuM5gDAPA9fIMO5KU4yp8ZOi9IAH8XDoFbWDNUuLyYg-vRjujsPNJp4EFVjdHiPgOyNY-I7oFy4wZTJDdb4UVQZNpySHoXwE1dPC8ap7ckoArby7VrUW6aJkQTgwXATUIrv5tb1qADgDgR-rGsL3"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-on-surface">Adv. Rathore</span>
+<span class="text-[10px] text-slate-500 label-mono">SUPREME COURT</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 ml-60 min-h-screen bg-[#050810]">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="sticky top-0 z-40 w-full bg-[#10131c]/60 backdrop-blur-xl flex justify-between items-center h-20 px-12 border-b border-white/5">
+<h2 class="font-['Newsreader'] italic text-2xl text-[#FFB693]">My Papers</h2>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg group-focus-within:text-primary transition-colors">search</span>
+<input class="bg-[#0D1117] border-none rounded-full py-2 pl-10 pr-4 w-64 text-sm focus:ring-1 ring-[#FF6B00]/20 placeholder:text-slate-600 transition-all" placeholder="Search archive..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-300 hover:text-[#FFB693] transition-opacity">notifications</button>
+<button class="material-symbols-outlined text-slate-300 hover:text-[#FFB693] transition-opacity">account_circle</button>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8 space-y-8">
+<!-- Toolbar Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="bg-[#0D1117] border-none rounded-lg py-2.5 pl-10 pr-4 w-[280px] text-sm focus:ring-1 ring-primary/20 text-on-surface" placeholder="Search documents..." type="text"/>
+</div>
+<div class="relative">
+<select class="bg-transparent border-none text-xs text-slate-400 label-mono appearance-none pr-8 py-2 cursor-pointer hover:text-on-surface transition-colors focus:ring-0">
+<option>Newest first</option>
+<option>Oldest first</option>
+<option>Size descending</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-sm">expand_more</span>
+</div>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold text-xs label-mono shadow-lg shadow-primary-container/20 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Analyze New Document
+                </button>
+</div>
+<!-- Stats Mini Row -->
+<div class="flex items-center gap-4 text-[11px] label-mono text-slate-500">
+<span class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-slate-700"></span> 24 documents</span>
+<span class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-slate-700"></span> 84.3K tokens saved</span>
+<span class="flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-slate-700"></span> 6,821g CO₂ avoided</span>
+</div>
+<!-- Papers Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-[#0D1117] rounded-xl p-5 border border-white/[0.03] hover:border-primary/20 transition-all group flex flex-col justify-between h-[220px]">
+<div>
+<div class="flex justify-between items-start gap-3 mb-3">
+<h3 class="font-['Newsreader'] font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Digital Personal Data Protection Act.pdf</h3>
+<span class="bg-primary/10 text-primary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Hindi</span>
+</div>
+<p class="data-mono text-[10px] text-slate-500 mb-6">18 pages | 66% compressed | 3,668 tokens saved</p>
+</div>
+<div class="space-y-4">
+<div class="flex gap-2">
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-secondary flex items-center gap-1">⚡ 0.004 kWh</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-tertiary flex items-center gap-1">🌱 2.6g CO₂</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-primary flex items-center gap-1">💰 $0.009</span>
+</div>
+<div class="flex items-center justify-between border-t border-white/[0.05] pt-4">
+<span class="text-[10px] label-mono text-slate-600">21 Mar 2026</span>
+<div class="flex gap-3">
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-sm">visibility</span> View
+                                </button>
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-sm">share</span> Share
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#0D1117] rounded-xl p-5 border border-white/[0.03] hover:border-primary/20 transition-all group flex flex-col justify-between h-[220px]">
+<div>
+<div class="flex justify-between items-start gap-3 mb-3">
+<h3 class="font-['Newsreader'] font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">BNS-Section-420-Amendment.docx</h3>
+<span class="bg-primary/10 text-primary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Hindi</span>
+</div>
+<p class="data-mono text-[10px] text-slate-500 mb-6">4 pages | 82% compressed | 1,240 tokens saved</p>
+</div>
+<div class="space-y-4">
+<div class="flex gap-2">
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-secondary">⚡ 0.001 kWh</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-tertiary">🌱 0.8g CO₂</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-primary">💰 $0.002</span>
+</div>
+<div class="flex items-center justify-between border-t border-white/[0.05] pt-4">
+<span class="text-[10px] label-mono text-slate-600">19 Mar 2026</span>
+<div class="flex gap-3">
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">visibility</span> View</button>
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">share</span> Share</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#0D1117] rounded-xl p-5 border border-white/[0.03] hover:border-primary/20 transition-all group flex flex-col justify-between h-[220px]">
+<div>
+<div class="flex justify-between items-start gap-3 mb-3">
+<h3 class="font-['Newsreader'] font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Supreme_Court_Rulings_Vol_4.pdf</h3>
+<span class="bg-primary/10 text-primary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Hindi</span>
+</div>
+<p class="data-mono text-[10px] text-slate-500 mb-6">142 pages | 45% compressed | 42,910 tokens saved</p>
+</div>
+<div class="space-y-4">
+<div class="flex gap-2">
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-secondary">⚡ 0.045 kWh</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-tertiary">🌱 31.2g CO₂</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-primary">💰 $0.104</span>
+</div>
+<div class="flex items-center justify-between border-t border-white/[0.05] pt-4">
+<span class="text-[10px] label-mono text-slate-600">15 Mar 2026</span>
+<div class="flex gap-3">
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">visibility</span> View</button>
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">share</span> Share</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-[#0D1117] rounded-xl p-5 border border-white/[0.03] hover:border-primary/20 transition-all group flex flex-col justify-between h-[220px]">
+<div>
+<div class="flex justify-between items-start gap-3 mb-3">
+<h3 class="font-['Newsreader'] font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Land_Ceiling_Act_Review.pdf</h3>
+<span class="bg-primary/10 text-primary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Hindi</span>
+</div>
+<p class="data-mono text-[10px] text-slate-500 mb-6">12 pages | 71% compressed | 2,110 tokens saved</p>
+</div>
+<div class="space-y-4">
+<div class="flex gap-2">
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-secondary">⚡ 0.003 kWh</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-tertiary">🌱 1.9g CO₂</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-primary">💰 $0.006</span>
+</div>
+<div class="flex items-center justify-between border-t border-white/[0.05] pt-4">
+<span class="text-[10px] label-mono text-slate-600">10 Mar 2026</span>
+<div class="flex gap-3">
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">visibility</span> View</button>
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">share</span> Share</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-[#0D1117] rounded-xl p-5 border border-white/[0.03] hover:border-primary/20 transition-all group flex flex-col justify-between h-[220px]">
+<div>
+<div class="flex justify-between items-start gap-3 mb-3">
+<h3 class="font-['Newsreader'] font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Information_Tech_Rules_2021.pdf</h3>
+<span class="bg-primary/10 text-primary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Hindi</span>
+</div>
+<p class="data-mono text-[10px] text-slate-500 mb-6">25 pages | 58% compressed | 4,500 tokens saved</p>
+</div>
+<div class="space-y-4">
+<div class="flex gap-2">
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-secondary">⚡ 0.005 kWh</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-tertiary">🌱 3.4g CO₂</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-[10px] label-mono text-primary">💰 $0.012</span>
+</div>
+<div class="flex items-center justify-between border-t border-white/[0.05] pt-4">
+<span class="text-[10px] label-mono text-slate-600">05 Mar 2026</span>
+<div class="flex gap-3">
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">visibility</span> View</button>
+<button class="text-xs label-mono text-slate-400 hover:text-on-surface flex items-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">share</span> Share</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 6: Upload Shortcut -->
+<label class="relative bg-[#0D1117]/40 rounded-xl p-5 border-2 border-dashed border-primary/30 flex flex-col items-center justify-center h-[220px] cursor-pointer group hover:bg-primary/5 hover:border-primary transition-all" for="file-upload">
+<input class="hidden" id="file-upload" type="file"/>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-2xl">upload_file</span>
+</div>
+<span class="text-[#FFB693] font-bold label-mono text-sm">⬆️ Upload New</span>
+<p class="text-[10px] text-slate-600 label-mono mt-2">Max 50MB per file</p>
+</label>
+</div>
+<!-- Footer Stats / Pagination Suggestion -->
+<div class="pt-12 border-t border-white/[0.03] flex justify-between items-center text-[10px] label-mono text-slate-600">
+<p>NYAYASETU SOVEREIGN ARCHIVE v2.4.1</p>
+<div class="flex gap-8">
+<span>END-TO-END ENCRYPTED</span>
+<span>GDPR COMPLIANT</span>
+<span>MEITY AUDITED</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

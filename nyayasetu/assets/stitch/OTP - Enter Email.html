@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NyayaSetu | Secure Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@300..700&amp;family=Playfair+Display:wght@400..900&amp;family=DM+Sans:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#4edea3",
+              "error-container": "#93000a",
+              "inverse-surface": "#e0e2ee",
+              "primary": "#ffb693",
+              "on-primary-container": "#572000",
+              "secondary-fixed-dim": "#4edea3",
+              "surface-tint": "#ffb693",
+              "on-primary": "#561f00",
+              "on-primary-fixed": "#351000",
+              "on-error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#e4c368",
+              "on-secondary-container": "#00311f",
+              "primary-container": "#ff6b00",
+              "inverse-primary": "#a04100",
+              "surface-container-highest": "#31353e",
+              "surface-variant": "#31353e",
+              "surface-container-lowest": "#0a0e16",
+              "on-tertiary-fixed": "#241a00",
+              "on-tertiary": "#3d2f00",
+              "on-surface": "#e0e2ee",
+              "tertiary-container": "#c7a850",
+              "surface-container": "#1c2028",
+              "on-secondary-fixed": "#002113",
+              "tertiary": "#e4c368",
+              "background": "#10131c",
+              "on-surface-variant": "#e2bfb0",
+              "tertiary-fixed": "#ffe08d",
+              "surface": "#10131c",
+              "primary-fixed": "#ffdbcc",
+              "surface-container-low": "#181c24",
+              "secondary-fixed": "#6ffbbe",
+              "outline-variant": "#5a4136",
+              "outline": "#a98a7d",
+              "surface-bright": "#353943",
+              "secondary-container": "#00a572",
+              "primary-fixed-dim": "#ffb693",
+              "on-tertiary-fixed-variant": "#584400",
+              "on-secondary-fixed-variant": "#005236",
+              "on-background": "#e0e2ee",
+              "inverse-on-surface": "#2d303a",
+              "on-tertiary-container": "#4f3d00",
+              "error": "#ffb4ab",
+              "on-secondary": "#003824",
+              "surface-dim": "#10131c",
+              "surface-container-high": "#262a33",
+              "on-primary-fixed-variant": "#7a3000",
+              "on-error": "#690005"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Space Grotesk", "sans-serif"],
+              "playfair": ["Playfair Display", "serif"],
+              "dmsans": ["DM Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.25rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-overlay {
+            background-color: rgba(5, 8, 16, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen overflow-hidden">
+<!-- Blurred Background Dashboard Representation -->
+<main aria-hidden="true" class="fixed inset-0 z-0 p-8 grid grid-cols-12 gap-6 opacity-30 blur-md pointer-events-none">
+<!-- Sidebar Placeholder -->
+<aside class="col-span-2 bg-[#080D1A] rounded-2xl h-full"></aside>
+<!-- Content Placeholder -->
+<div class="col-span-10 flex flex-col gap-6">
+<header class="h-20 bg-surface-container-low rounded-2xl w-full"></header>
+<div class="grid grid-cols-3 gap-6">
+<div class="h-48 bg-surface-container rounded-2xl"></div>
+<div class="h-48 bg-surface-container rounded-2xl"></div>
+<div class="h-48 bg-surface-container rounded-2xl"></div>
+</div>
+<div class="h-full bg-surface-container-low rounded-2xl w-full"></div>
+</div>
+</main>
+<!-- Authentication Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center glass-overlay backdrop-blur-xl">
+<!-- Modal Card -->
+<div class="w-full max-w-[400px] bg-[#0D1117] border border-white/5 rounded-[20px] p-8 shadow-2xl transition-all duration-300">
+<!-- Branding/Icon -->
+<div class="flex flex-col items-center">
+<div aria-label="Scales of Justice" class="text-[36px] leading-none mb-4" role="img">⚖️</div>
+<h1 class="font-playfair text-[22px] font-bold text-on-surface tracking-tight text-center">
+                    Welcome to NyayaSetu
+                </h1>
+<p class="font-dmsans text-[13px] text-on-surface-variant/60 text-center mt-2 mb-8 leading-relaxed max-w-[280px]">
+                    Sign in to save your analyses and access history
+                </p>
+</div>
+<!-- Email Input Form -->
+<form class="space-y-4" onsubmit="return false;">
+<div class="relative group">
+<input class="w-full h-11 bg-[#050810] border border-white/5 rounded-xl px-4 text-on-surface font-dmsans text-sm placeholder:text-on-surface-variant/30 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all duration-200" placeholder="your@email.com" required="" type="email"/>
+</div>
+<button class="w-full h-11 bg-primary/10 border border-primary/40 text-primary-container rounded-xl font-dmsans text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary/20 hover:border-primary/60 active:scale-[0.98] transition-all duration-200" type="submit">
+                    Send OTP 
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Action -->
+<div class="mt-6 flex justify-center">
+<button class="text-on-surface-variant/40 hover:text-on-surface-variant/80 font-dmsans text-xs flex items-center gap-1 transition-colors group">
+                    Continue as guest 
+                    <span class="material-symbols-outlined text-[14px] opacity-40 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Background Decoration Elements (Subtle) -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px] pointer-events-none"></div>
+</body></html>
