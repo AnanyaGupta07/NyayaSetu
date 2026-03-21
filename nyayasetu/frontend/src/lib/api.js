@@ -41,4 +41,9 @@ export const getGlobalStats = async () => {
   return response.data;
 };
 
+export const deleteAnalysis = async (analysisId) => {
+  const response = await api.delete(`/analyses/${analysisId}`);
+  return response.data;
+};
+
 export default api;

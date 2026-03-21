@@ -1,12 +1,109 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserHistory } from "@/lib/api";
+import { getUserHistory, deleteAnalysis } from "@/lib/api";
 import { supabase } from "@/lib/supabase";
+import { toast } from 'sonner';
 
+/* ── 3-dot menu ──────────────────────────────────── */
+function PaperMenu({ paperId, paperName, onDelete }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  // Close on outside click
+  useEffect(() => {
+    function handler(e) {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative" onClick={(e) => e.stopPropagation()}>
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-white/5 transition-all"
+        title="Options"
+      >
+        <span className="material-symbols-outlined text-[18px]">more_vert</span>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-9 w-44 bg-[#1c2028] border border-white/8 rounded-xl shadow-lg shadow-black/40 overflow-hidden z-50 py-1 animate-in fade-in-0 zoom-in-95 duration-100">
+          <button
+            onClick={() => { setOpen(false); onDelete(paperId, paperName); }}
+            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-error hover:bg-error/10 transition-colors font-body"
+          >
+            <span className="material-symbols-outlined text-[18px]">delete</span>
+            Delete document
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Confirm Modal ───────────────────────────────── */
+function ConfirmDeleteModal({ paperName, onConfirm, onCancel, isDeleting }) {
+  return (
+    <div
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onCancel}
+    >
+      <div
+        className="bg-[#1c2028] border border-white/8 rounded-2xl p-8 max-w-sm w-full shadow-2xl shadow-black/60"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Icon */}
+        <div className="w-14 h-14 rounded-full bg-error/10 flex items-center justify-center mx-auto mb-6">
+          <span className="material-symbols-outlined text-3xl text-error">delete_forever</span>
+        </div>
+
+        <h3 className="font-headline text-xl text-white text-center mb-2">Delete Document?</h3>
+        <p className="text-slate-400 text-sm text-center leading-relaxed mb-8">
+          <span className="font-semibold text-slate-300 break-words">"{paperName}"</span>
+          <br />will be permanently removed from your archive. This action cannot be undone.
+        </p>
+
+        <div className="flex gap-3">
+          <button
+            onClick={onCancel}
+            disabled={isDeleting}
+            className="flex-1 h-11 rounded-xl border border-white/10 text-slate-300 text-sm font-bold hover:bg-white/5 transition-colors disabled:opacity-50"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            disabled={isDeleting}
+            className="flex-1 h-11 rounded-xl bg-error/10 border border-error/30 text-error text-sm font-bold hover:bg-error/20 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+          >
+            {isDeleting ? (
+              <>
+                <span className="w-4 h-4 border-2 border-error/30 border-t-error rounded-full animate-spin" />
+                Deleting...
+              </>
+            ) : (
+              <>
+                <span className="material-symbols-outlined text-[18px]">delete</span>
+                Delete
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Main Page ───────────────────────────────────── */
 export default function MyPapers() {
   const navigate = useNavigate();
   const [history, setHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [deleteTarget, setDeleteTarget] = useState(null); // { id, name }
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     async function fetchHistory() {
@@ -25,117 +122,145 @@ export default function MyPapers() {
     fetchHistory();
   }, []);
 
+  const handleDeleteRequest = (paperId, paperName) => {
+    setDeleteTarget({ id: paperId, name: paperName });
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!deleteTarget) return;
+    setIsDeleting(true);
+    try {
+      await deleteAnalysis(deleteTarget.id);
+      // Optimistic removal — remove from local state immediately
+      setHistory((prev) => prev.filter((p) => p.id !== deleteTarget.id));
+      toast.success(`"${deleteTarget.name}" deleted from your archive.`);
+    } catch (err) {
+      toast.error(err?.response?.data?.detail || 'Failed to delete document');
+    } finally {
+      setIsDeleting(false);
+      setDeleteTarget(null);
+    }
+  };
+
+  const filteredHistory = history.filter((item) =>
+    item.document_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const totalTokensSaved = history.reduce((sum, item) => sum + (item.tokens_saved || 0), 0);
-  const totalCo2Saved = (totalTokensSaved * 0.000001 * 708).toFixed(2); // Approximate calc
+  const totalCo2Saved = (totalTokensSaved * 0.000001 * 708).toFixed(2);
 
   return (
-    <div className="p-8 space-y-8 max-w-[1400px] w-full mx-auto">
-      {/* Toolbar Row */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div className="flex items-center gap-4 w-full md:w-auto">
-          <div className="relative flex-1 md:flex-none">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" style={{ fontVariationSettings: "'FILL' 0" }}>search</span>
-            <input 
-              className="bg-[#0D1117] border-none rounded-lg py-2.5 pl-10 pr-4 w-full md:w-[280px] text-sm focus:ring-1 ring-primary/20 text-on-surface" 
-              placeholder="Search documents..." 
-              type="text" 
-            />
+    <>
+      {/* ── Confirmation Modal ── */}
+      {deleteTarget && (
+        <ConfirmDeleteModal
+          paperName={deleteTarget.name}
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => setDeleteTarget(null)}
+          isDeleting={isDeleting}
+        />
+      )}
+
+      <div className="p-8 space-y-8 max-w-[1400px] w-full mx-auto">
+        {/* Toolbar Row */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="flex items-center gap-4 w-full md:w-auto">
+            <div className="relative flex-1 md:flex-none">
+              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" style={{ fontVariationSettings: "'FILL' 0" }}>search</span>
+              <input
+                className="bg-[#0D1117] border-none rounded-lg py-2.5 pl-10 pr-4 w-full md:w-[280px] text-sm focus:ring-1 ring-primary/20 text-on-surface outline-none"
+                placeholder="Search documents..."
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="relative hidden sm:block">
-            <select className="bg-transparent border-none text-xs text-slate-400 font-label appearance-none pr-8 py-2 cursor-pointer hover:text-on-surface transition-colors focus:ring-0">
-              <option>Newest first</option>
-              <option>Oldest first</option>
-              <option>Size descending</option>
-            </select>
-            <span className="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-sm">expand_more</span>
-          </div>
+          <button
+            onClick={() => navigate('/analyze')}
+            className="bg-gradient-to-r from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold text-xs font-label shadow-lg shadow-primary-container/20 hover:brightness-110 active:scale-95 transition-all whitespace-nowrap"
+          >
+            <span className="material-symbols-outlined text-sm">add</span>
+            Analyze New Document
+          </button>
         </div>
-        <button 
-          onClick={() => navigate('/analyze')}
-          className="bg-gradient-to-r from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold text-xs font-label shadow-lg shadow-primary-container/20 hover:brightness-110 active:scale-95 transition-all whitespace-nowrap"
-        >
-          <span className="material-symbols-outlined text-sm">add</span>
-          Analyze New Document
-        </button>
-      </div>
 
-      {/* Stats Mini Row */}
-      <div className="flex flex-wrap items-center gap-4 text-[11px] font-label text-slate-500">
-        <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-700"></span> {history.length} documents</span>
-        <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-700"></span> {totalTokensSaved.toLocaleString()} tokens saved</span>
-        <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-700"></span> {totalCo2Saved}g CO₂ avoided</span>
-      </div>
+        {/* Stats Mini Row */}
+        <div className="flex flex-wrap items-center gap-4 text-[11px] font-label text-slate-500">
+          <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-700" /> {history.length} documents</span>
+          <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-700" /> {totalTokensSaved.toLocaleString()} tokens saved</span>
+          <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-700" /> {totalCo2Saved}g CO₂ avoided</span>
+        </div>
 
-      {/* Papers Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        
-        {/* Card: Upload Shortcut */}
-        <label 
-          htmlFor="file-upload" 
-          className="relative bg-[#0D1117]/40 rounded-xl p-5 border-2 border-dashed border-primary/30 flex flex-col items-center justify-center h-[220px] cursor-pointer group hover:bg-primary/5 hover:border-primary transition-all"
-        >
-          <input 
-            id="file-upload" 
-            type="file" 
-            className="hidden" 
-            accept=".pdf"
-            onChange={() => navigate('/analyze')}
-          />
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined text-primary text-2xl">upload_file</span>
-          </div>
-          <span className="text-[#FFB693] font-bold font-label text-sm">⬆️ Upload New</span>
-          <p className="text-[10px] text-slate-600 font-label mt-2">Max 50MB per file</p>
-        </label>
-        
-        {isLoading ? (
-          <div className="col-span-full py-12 text-center text-slate-500 font-label text-sm">
-            Loading your documents...
-          </div>
-        ) : history.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-slate-500 font-label text-sm">
-            You haven't analyzed any documents yet. Upload a PDF to begin!
-          </div>
-        ) : (
-          history.map((item) => (
-            <div key={item.id} className="bg-[#0D1117] rounded-xl p-5 border border-white/5 flex flex-col group hover:border-white/10 transition-colors cursor-pointer" onClick={() => navigate(`/shared/${item.share_id}`)}>
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1c2028] flex items-center justify-center text-lg shadow-inner">
-                  📄
+        {/* Papers Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+          {/* Upload Shortcut */}
+          <label
+            htmlFor="file-upload"
+            className="relative bg-[#0D1117]/40 rounded-xl p-5 border-2 border-dashed border-primary/30 flex flex-col items-center justify-center h-[220px] cursor-pointer group hover:bg-primary/5 hover:border-primary transition-all"
+          >
+            <input id="file-upload" type="file" className="hidden" accept=".pdf" onChange={() => navigate('/analyze')} />
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined text-primary text-2xl">upload_file</span>
+            </div>
+            <span className="text-[#FFB693] font-bold font-label text-sm">⬆️ Upload New</span>
+            <p className="text-[10px] text-slate-600 font-label mt-2">Max 50MB per file</p>
+          </label>
+
+          {/* Paper Cards */}
+          {isLoading ? (
+            <div className="col-span-full py-12 text-center text-slate-500 font-label text-sm">Loading your documents...</div>
+          ) : filteredHistory.length === 0 && searchQuery ? (
+            <div className="col-span-full py-12 text-center text-slate-500 font-label text-sm">No documents matching "{searchQuery}"</div>
+          ) : history.length === 0 ? (
+            <div className="col-span-full py-12 text-center text-slate-500 font-label text-sm">You haven't analyzed any documents yet. Upload a PDF to begin!</div>
+          ) : (
+            filteredHistory.map((item) => (
+              <div
+                key={item.id}
+                className="bg-[#0D1117] rounded-xl p-5 border border-white/5 flex flex-col group hover:border-white/10 transition-colors cursor-pointer relative"
+                onClick={() => navigate(`/shared/${item.share_id}`)}
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#1c2028] flex items-center justify-center text-lg shadow-inner">📄</div>
+                    <div>
+                      <h4 className="font-headline text-sm text-slate-200 truncate w-[160px] group-hover:text-primary transition-colors">{item.document_name}</h4>
+                      <p className="text-[10px] text-slate-500 font-mono mt-0.5">{item.document_pages} pages • {new Date(item.created_at).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+                  <PaperMenu
+                    paperId={item.id}
+                    paperName={item.document_name}
+                    onDelete={handleDeleteRequest}
+                  />
                 </div>
-                <div>
-                  <h4 className="font-headline text-sm text-slate-200 truncate w-[160px] group-hover:text-primary transition-colors">{item.document_name}</h4>
-                  <p className="text-[10px] text-slate-500 font-mono mt-0.5">{item.document_pages} pages • {new Date(item.created_at).toLocaleDateString()}</p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-2 py-0.5 bg-emerald-400/10 text-emerald-400 text-[10px] font-bold rounded">-{Math.round(item.compression_percentage)}% tokens</span>
+                  <span className="px-2 py-0.5 bg-[#2a2e38] text-slate-300 text-[10px] font-label font-bold rounded capitalize">{item.language}</span>
+                </div>
+
+                <div className="mt-auto pt-4 border-t border-white/[0.03] flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
+                  <p className="text-[10px] text-slate-500 font-label">Analyzed by ScaleDown</p>
+                  <span className="material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
                 </div>
               </div>
-              <button className="text-slate-500 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
-                <span className="material-symbols-outlined text-[18px]">more_vert</span>
-              </button>
-            </div>
+            ))
+          )}
+        </div>
 
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-2 py-0.5 bg-emerald-400/10 text-emerald-400 text-[10px] font-bold rounded">-{Math.round(item.compression_percentage)}% tokens</span>
-              <span className="px-2 py-0.5 bg-[#2a2e38] text-slate-300 text-[10px] font-label font-bold rounded capitalize">{item.language}</span>
-            </div>
-
-            <div className="mt-auto pt-4 border-t border-white/[0.03] flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
-              <p className="text-[10px] text-slate-500 font-label">Analyzed by ScaleDown</p>
-              <span className="material-symbols-outlined text-[16px] text-secondary">arrow_forward</span>
-            </div>
+        {/* Footer */}
+        <div className="pt-12 mt-8 border-t border-white/[0.03] flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-label text-slate-600">
+          <p>NYAYASETU SOVEREIGN ARCHIVE v2.4.1</p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
+            <span>END-TO-END ENCRYPTED</span>
+            <span>GDPR COMPLIANT</span>
+            <span>MEITY AUDITED</span>
           </div>
-        )))}
-      </div>
-
-      {/* Footer Stats */}
-      <div className="pt-12 mt-8 border-t border-white/[0.03] flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-label text-slate-600">
-        <p>NYAYASETU SOVEREIGN ARCHIVE v2.4.1</p>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-          <span>END-TO-END ENCRYPTED</span>
-          <span>GDPR COMPLIANT</span>
-          <span>MEITY AUDITED</span>
         </div>
       </div>
-    </div>
+    </>
   );
 }

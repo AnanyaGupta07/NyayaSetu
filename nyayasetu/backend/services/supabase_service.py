@@ -166,3 +166,18 @@ def get_global_stats() -> dict:
             "total_tokens_saved": 0,
             "total_co2_saved_grams": 0,
         }
+
+
+def delete_analysis(analysis_id: str) -> bool:
+    try:
+        result = _request(
+            "DELETE",
+            "/rest/v1/analyses",
+            params={"id": f"eq.{analysis_id}"},
+            prefer="return=representation",
+        )
+        return bool(result)
+    except Exception as exc:
+        print(f"[Supabase] Delete failed: {exc}")
+        return False
+

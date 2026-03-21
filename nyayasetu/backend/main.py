@@ -157,6 +157,14 @@ async def citizen_qa(request: Request):
 	answer = await answer_question(compressed_context, question, language)
 	return {"answer": answer, "question": question}
 
+@app.delete("/api/analyses/{analysis_id}")
+async def delete_analysis(analysis_id: str):
+	from services.supabase_service import delete_analysis as _delete
+	deleted = _delete(analysis_id)
+	if not deleted:
+		raise HTTPException(404, "Analysis not found")
+	return {"success": True, "deleted_id": analysis_id}
+
 if __name__ == "__main__":
 	import uvicorn
 	uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
