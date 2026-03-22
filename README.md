@@ -9,6 +9,8 @@
 ## 🚀 Live Demo
 https://drive.google.com/file/d/1AMwkcrUgQAkzLYWw7KuL_Uk85JRBxqNz/view?usp=drivesdk
 ---
+## 🌐 Live Application
+[Access NyayaSetu](https://nyaysetuai.netlify.app)
 
 ## 🎯 Overview
 
