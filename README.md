@@ -8,6 +8,13 @@
 
 ---
 
+## ▶️ Demo
+
+Try the demo video for NyayaSetu here:
+
+- Demo video (Google Drive): https://drive.google.com/file/d/1AMwkcrUgQAkzLYWw7KuL_Uk85JRBxqNz/view?usp=drivesdk
+
+
 ## 🎯 Overview
 
 NyayaSetu bridges the gap between complex legal language and ordinary Indian citizens. Upload any legal document (bills, acts, policies), and our AI-powered system will:
