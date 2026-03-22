@@ -7,7 +7,7 @@
 [![Stack](https://img.shields.io/badge/Stack-FastAPI%20%7C%20React%20%7C%20Supabase-orange)]()
 
 ## 🚀 Live Demo
-👉https://drive.google.com/file/d/1AMwkcrUgQAkzLYWw7KuL_Uk85JRBxqNz/view?usp=drivesdk
+https://drive.google.com/file/d/1AMwkcrUgQAkzLYWw7KuL_Uk85JRBxqNz/view?usp=drivesdk
 ---
 
 ## 🎯 Overview
